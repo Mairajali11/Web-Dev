@@ -1,0 +1,9 @@
+"float": (
+  responsive: true,
+  property: float,
+  values: (
+    start: left,
+    end: right,
+    none: none,
+  )
+),
