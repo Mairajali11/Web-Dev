@@ -1,163 +1,111 @@
-// script.js
+$(document).ready(function () {
+    // Login Form Submission
+    $('#loginForm').submit(function (event) {
+        event.preventDefault();
+        $('#loginPage').hide();
+        $('#mainContent').show();
+        updateClock();
+        initializeCalendar();
+        initializeCharts();
+    });
 
-// Real-time clock
-function updateTime() {
-    const currentTime = new Date();
-    const hours = currentTime.getHours();
-    const minutes = currentTime.getMinutes();
-    const seconds = currentTime.getSeconds();
-    const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    document.getElementById('time').innerText = timeString;
-  }
-  setInterval(updateTime, 1000);
-  
-  // Students Pie Chart
-const studentsCtx = document.getElementById('studentsChart').getContext('2d');
-const studentsChart = new Chart(studentsCtx, {
-  type: 'pie',
-  data: {
-    labels: ['Boys', 'Girls'],
-    datasets: [{
-      data: [700, 500], // Example data
-      backgroundColor: ['#3498db', '#e74c3c'],
-      borderColor: ['#2980b9', '#c0392b'],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      tooltip: {
-        callbacks: {
-          label: function(tooltipItem) {
-            return `${tooltipItem.label}: ${tooltipItem.raw} students`;
-          }
-        }
-      },
-      legend: {
-        position: 'bottom',
-      },
-    },
-  }
+    // Toggle Sidebar
+    var sidebarVisible = true;
+
+$('#toggleBtn').click(function () {
+    if (sidebarVisible) {
+        $('#sidebar').css('transform', 'translateX(-100%)');
+        $('#mainContent').addClass('sidebar-hidden');
+        sidebarVisible = false;
+    } else {
+        $('#sidebar').css('transform', 'translateX(0)');
+        $('#mainContent').removeClass('sidebar-hidden');
+        sidebarVisible = true;
+    }
 });
 
-// Update the pie chart data
-function updatePieChartData(chart, newData) {
-  chart.data.datasets[0].data = newData;
-  chart.update();
-}
-
-// Example usage:
-updatePieChartData(studentsChart, [800, 600]); // Update the students pie chart data
-  
-  // Teachers Pie Chart
-  const teachersCtx = document.getElementById('teachersChart').getContext('2d');
-  const teachersChart = new Chart(teachersCtx, {
-    type: 'pie',
-    data: {
-      labels: ['Permanent', 'Temporary'],
-      datasets: [{
-        data: [60, 15], // Example data
-        backgroundColor: ['#2ecc71', '#f1c40f'],
-        borderColor: ['#27ae60', '#f39c12'],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        tooltip: {
-          callbacks: {
-            label: function(tooltipItem) {
-              return `${tooltipItem.label}: ${tooltipItem.raw} teachers`;
-            }
-          }
-        },
-        legend: {
-          position: 'bottom',
-        },
-      },
-    }
-  });
-  
-  // Income & Expenses Pie Chart
-  const financeCtx = document.getElementById('financeChart').getContext('2d');
-  const financeChart = new Chart(financeCtx, {
-    type: 'pie',
-    data: {
-      labels: ['Income', 'Expenses'],
-      datasets: [{
-        data: [50000, 20000], // Example data
-        backgroundColor: ['#2ecc71', '#e74c3c'],
-        borderColor: ['#27ae60', '#c0392b'],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        tooltip: {
-          callbacks: {
-            label: function(tooltipItem) {
-              return `${tooltipItem.label}: $${tooltipItem.raw}`;
-            }
-          }
-        },
-        legend: {
-          position: 'bottom',
-        },
-      },
-    }
-  });
-  
-  // Dynamic Counters
-  const totalStudents = document.getElementById('totalStudents');
-  const totalTeachers = document.getElementById('totalTeachers');
-  const totalIncome = document.getElementById('totalIncome');
-  const totalExpenses = document.getElementById('totalExpenses');
-  
-  const animateValue = (element, start, end, duration) => {
-    let startTime = null;
-    const step = (currentTime) => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      element.innerText = Math.floor(progress * (end - start) + start);
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      }
-    };
-    requestAnimationFrame(step);
-  };
-  
-  animateValue(totalStudents, 0, 1200, 2000);
-  animateValue(totalTeachers, 0, 75, 2000);
-  animateValue(totalIncome, 0, 50000, 2000);
-  animateValue(totalExpenses, 0, 20000, 2000);
-  
-  // FullCalendar Setup
-  document.addEventListener('DOMContentLoaded', function () {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      events: [
-        // Example events
-        { title: 'Exam Week', start: '2024-09-15', end: '2024-09-20' },
-        { title: 'Teacher\'s Meeting', start: '2024-09-25' },
-        { title: 'Sports Day', start: '2024-10-05' }
-      ]
-    });
-    calendar.render();
-  });
-  // Toggle dropdown on click
-document.querySelectorAll('.sidebar > ul > li > a').forEach(menu => {
-    menu.addEventListener('click', function(event) {
-        event.preventDefault();
-        let dropdown = this.nextElementSibling;
-        if (dropdown) {
-            dropdown.classList.toggle('show');
+    $('#themeSwitcher').click(function () {
+        $('body').toggleClass('light-mode dark-mode');
+        $('#mainContent').toggleClass('light-mode dark-mode');
+        if ($(this).text() === 'Switch to Dark Mode') {
+            $(this).text('Switch to Light Mode');
+        } else {
+            $(this).text('Switch to Dark Mode');
         }
     });
+
+    // Update Clock
+    function updateClock() {
+        function formatTime(date) {
+            return date.toTimeString().split(' ')[0];
+        }
+        setInterval(function () {
+            $('#clock').text(formatTime(new Date()));
+        }, 1000);
+    }
+
+    // Initialize Calendar
+    function initializeCalendar() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth'
+        });
+        calendar.render();
+    }
+
+    // Initialize Charts
+    function initializeCharts() {
+        var ctxStudents = document.getElementById('studentsChart').getContext('2d');
+        var ctxTeachers = document.getElementById('teachersChart').getContext('2d');
+        var ctxFinance = document.getElementById('financeChart').getContext('2d');
+
+        new Chart(ctxStudents, {
+            type: 'pie',
+            data: {
+                labels: ['Class A', 'Class B', 'Class C'],
+                datasets: [{
+                    data: [300, 500, 400],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        new Chart(ctxTeachers, {
+            type: 'pie',
+            data: {
+                labels: ['Math', 'Science', 'English'],
+                datasets: [{
+                    data: [50, 30, 20],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        new Chart(ctxFinance, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May'],
+                datasets: [{
+                    label: 'Income',
+                    data: [10000, 12000, 11000, 13000, 15000],
+                    borderColor: '#36A2EB',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)'
+                }, {
+                    label: 'Expenses',
+                    data: [8000, 9000, 8500, 9000, 9500],
+                    borderColor: '#FF6384',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)'
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    }
 });

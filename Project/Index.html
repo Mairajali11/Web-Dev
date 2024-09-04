@@ -4,19 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Management System</title>
+    <title>Mairaj Montessori & School</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+    <link rel="icon" href="logo.png">
 </head>
 
 <body>
-    <div class="container">
+    <!-- Login Page -->
+    <div id="loginPage" class="login-page">
+        <h1>Login to Your Account</h1>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+    </div> 
+
+    <!-- Main Content After Login -->
+    <div id="mainContent" class="container" style="display:none;">
         <!-- Sidebar -->
-        <nav class="sidebar">
+        <nav class="sidebar" id="sidebar">
+            <button class="toggle-btn" id="toggleBtn">&#9776;</button>
             <div class="sidebar-header">
                 <img src="logo.png" alt="School Logo" class="school-logo">
                 <h2>Mairaj Montessori & School</h2>
@@ -54,11 +71,15 @@
                         <li><a href="#">Add Event</a></li>
                     </ul>
                 </li>
+                <li><a href="#" id="themeSwitcher">Switch to Dark Mode</a></li>
             </ul>
         </nav>
 
         <!-- Main Content -->
         <main class="main-content">
+            <div class="topbar">
+                <div class="clock" id="clock">00:00:00</div>
+            </div>
             <!-- Summary Cards -->
             <section class="summary-cards">
                 <div class="summary-card">
@@ -107,140 +128,8 @@
         </main>
     </div>
 
-    <!-- Script to Render the Pie Charts -->
-    <script>
-        // Students Pie Chart
-        const studentsCtx = document.getElementById('studentsChart').getContext('2d');
-        const studentsChart = new Chart(studentsCtx, {
-            type: 'pie',
-            data: {
-                labels: ['Boys', 'Girls'],
-                datasets: [{
-                    data: [700, 500], // Example data
-                    backgroundColor: ['#3498db', '#e74c3c'],
-                    borderColor: ['#2980b9', '#c0392b'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                return `${tooltipItem.label}: ${tooltipItem.raw} students`;
-                            }
-                        }
-                    },
-                    legend: {
-                        position: 'bottom',
-                    },
-                },
-            }
-        });
-
-        // Teachers Pie Chart
-        const teachersCtx = document.getElementById('teachersChart').getContext('2d');
-        const teachersChart = new Chart(teachersCtx, {
-            type: 'pie',
-            data: {
-                labels: ['Permanent', 'Temporary'],
-                datasets: [{
-                    data: [60, 15], // Example data
-                    backgroundColor: ['#2ecc71', '#f1c40f'],
-                    borderColor: ['#27ae60', '#f39c12'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                return `${tooltipItem.label}: ${tooltipItem.raw} teachers`;
-                            }
-                        }
-                    },
-                    legend: {
-                        position: 'bottom',
-                    },
-                },
-            }
-        });
-
-        // Income & Expenses Pie Chart
-        const financeCtx = document.getElementById('financeChart').getContext('2d');
-        const financeChart = new Chart(financeCtx, {
-            type: 'pie',
-            data: {
-                labels: ['Income', 'Expenses'],
-                datasets: [{
-                    data: [50000, 20000], // Example data
-                    backgroundColor: ['#2ecc71', '#e74c3c'],
-                    borderColor: ['#27ae60', '#c0392b'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                return `${tooltipItem.label}: $${tooltipItem.raw}`;
-                            }
-                        }
-                    },
-                    legend: {
-                        position: 'bottom',
-                    },
-                },
-            }
-        });
-
-        // Dynamic Counters
-        const totalStudents = document.getElementById('totalStudents');
-        const totalTeachers = document.getElementById('totalTeachers');
-        const totalIncome = document.getElementById('totalIncome');
-        const totalExpenses = document.getElementById('totalExpenses');
-
-        const animateValue = (element, start, end, duration) => {
-            let startTime = null;
-            const step = (currentTime) => {
-                if (!startTime) startTime = currentTime;
-                const progress = Math.min((currentTime - startTime) / duration, 1);
-                element.innerText = Math.floor(progress * (end - start) + start);
-                if (progress < 1) {
-                    requestAnimationFrame(step);
-                }
-            };
-            requestAnimationFrame(step);
-        };
-
-        animateValue(totalStudents, 0, 1200, 2000);
-        animateValue(totalTeachers, 0, 75, 2000);
-        animateValue(totalIncome, 0, 50000, 2000);
-        animateValue(totalExpenses, 0, 20000, 2000);
-
-        // FullCalendar Setup
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                events: [
-                    // Example events
-                    { title: 'Exam Week', start: '2024-09-15', end: '2024-09-20' },
-                    { title: 'Teacher\'s Meeting', start: '2024-09-25' },
-                    { title: 'Sports Day', start: '2024-10-05' }
-                ]
-            });
-            calendar.render();
-        });
-    </script>
+    <!-- Script to Render the Pie Charts and Other Features -->
+    <script src="script.js"></script>
 </body>
 
 </html>
