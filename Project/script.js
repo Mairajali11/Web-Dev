@@ -24,15 +24,15 @@ $('#toggleBtn').click(function () {
     }
 });
 
-    $('#themeSwitcher').click(function () {
-        $('body').toggleClass('light-mode dark-mode');
-        $('#mainContent').toggleClass('light-mode dark-mode');
-        if ($(this).text() === 'Switch to Dark Mode') {
-            $(this).text('Switch to Light Mode');
-        } else {
-            $(this).text('Switch to Dark Mode');
-        }
-    });
+$('#themeSwitcher').click(function () {
+    $('body').toggleClass('light-mode dark-mode');
+    if ($(this).text() === 'Switch to Dark Mode') {
+        $(this).text('Switch to Light Mode');
+    } else {
+        $(this).text('Switch to Dark Mode');
+    }
+});
+
 
     // Update Clock
     function updateClock() {

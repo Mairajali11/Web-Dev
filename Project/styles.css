@@ -29,8 +29,24 @@ body {
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     position: fixed;
+    overflow-y: auto; /* Add this to make the sidebar scrollable */
     transition: transform 0.3s ease;
 }
+
+/* For smooth scrolling behavior */
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
 .toggle-btn.active {
     transform: rotate(90deg); /* or any other style you want to apply when the button is active */
 }
@@ -79,7 +95,7 @@ body {
 }
 
 .sidebar ul {
-    list-style-type: none;
+    list-style-type: disc;
     padding: 0;
 }
 
@@ -184,7 +200,7 @@ body {
 
 .clock {
     font-size: 16px;
-    display: flex;
+    display: float;
     align-items: center;
 }
 
