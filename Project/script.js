@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     // Login Form Submission
     $('#loginForm').submit(function (event) {
@@ -12,27 +13,26 @@ $(document).ready(function () {
     // Toggle Sidebar
     var sidebarVisible = true;
 
-$('#toggleBtn').click(function () {
-    if (sidebarVisible) {
-        $('#sidebar').css('transform', 'translateX(-100%)');
-        $('#mainContent').addClass('sidebar-hidden');
-        sidebarVisible = false;
-    } else {
-        $('#sidebar').css('transform', 'translateX(0)');
-        $('#mainContent').removeClass('sidebar-hidden');
-        sidebarVisible = true;
-    }
-});
+    $('#toggleBtn').click(function () {
+        if (sidebarVisible) {
+            $('#sidebar').css('transform', 'translateX(-100%)');
+            $('#mainContent').addClass('sidebar-hidden');
+            sidebarVisible = false;
+        } else {
+            $('#sidebar').css('transform', 'translateX(0)');
+            $('#mainContent').removeClass('sidebar-hidden');
+            sidebarVisible = true;
+        }
+    });
 
-$('#themeSwitcher').click(function () {
-    $('body').toggleClass('light-mode dark-mode');
-    if ($(this).text() === 'Switch to Dark Mode') {
-        $(this).text('Switch to Light Mode');
-    } else {
-        $(this).text('Switch to Dark Mode');
-    }
-});
-
+    $('#themeSwitcher').click(function () {
+        $('body').toggleClass('light-mode dark-mode');
+        if ($(this).text() === 'Switch to Dark Mode') {
+            $(this).text('Switch to Light Mode');
+        } else {
+            $(this).text('Switch to Dark Mode');
+        }
+    });
 
     // Update Clock
     function updateClock() {
@@ -60,52 +60,50 @@ $('#themeSwitcher').click(function () {
         var ctxFinance = document.getElementById('financeChart').getContext('2d');
 
         new Chart(ctxStudents, {
-            type: 'pie',
+            type: 'doughnut',
             data: {
                 labels: ['Class A', 'Class B', 'Class C'],
                 datasets: [{
                     data: [300, 500, 400],
                     backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
                 }]
-            },
-            options: {
-                responsive: true
             }
         });
 
         new Chart(ctxTeachers, {
-            type: 'pie',
+            type: 'doughnut',
             data: {
-                labels: ['Math', 'Science', 'English'],
+                labels: ['Grade 1', 'Grade 2', 'Grade 3'],
                 datasets: [{
-                    data: [50, 30, 20],
+                    data: [50, 25, 35],
                     backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
                 }]
-            },
-            options: {
-                responsive: true
             }
         });
 
         new Chart(ctxFinance, {
-            type: 'line',
+            type: 'doughnut',
             data: {
-                labels: ['January', 'February', 'March', 'April', 'May'],
+                labels: ['Income', 'Expenses'],
                 datasets: [{
-                    label: 'Income',
-                    data: [10000, 12000, 11000, 13000, 15000],
-                    borderColor: '#36A2EB',
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)'
-                }, {
-                    label: 'Expenses',
-                    data: [8000, 9000, 8500, 9000, 9500],
-                    borderColor: '#FF6384',
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)'
+                    label: 'Financial Overview',
+                    data: [50000, 20000],
+                    backgroundColor: ['#36A2EB', '#FF6384']
                 }]
-            },
-            options: {
-                responsive: true
             }
         });
     }
+
+    // Search Feature
+    $('#studentSearch, #studentSearchDashboard').on('input', function () {
+        var searchTerm = $(this).val().toLowerCase();
+        // Assuming you have a function to filter student entries
+        filterStudentEntries(searchTerm);
+    });
+
+    function filterStudentEntries(searchTerm) {
+        // Implement the logic to filter student entries based on the searchTerm
+        console.log("Search term:", searchTerm); // Replace this with actual filtering logic
+    }
 });
+
