@@ -133,206 +133,130 @@ body {
 
 .sidebar ul li a {
     text-decoration: none;
-    font-size: 16px;
+    color: #333;
     display: block;
     padding: 10px;
     border-radius: 4px;
 }
 
-.sidebar ul li a:hover {
-    background-color: #34495e; /* Darker greyish blue for hover */
-}
-
-/* Dropdown (submenu) styles */
-.sidebar ul .dropdown {
-    display: none; 
-    margin-left: 20px;
-    list-style-type: none; /* Remove default bullets */
-    padding: 0;
+.sidebar ul li .dropdown {
+    display: none;
+    list-style-type: none;
+    padding-left: 20px;
 }
 
 .sidebar ul li:hover .dropdown {
-    display: block; /* Show submenu on hover */
+    display: block;
 }
 
-.sidebar ul .dropdown li {
-    margin: 0; /* Remove margin from dropdown items */
+.sidebar ul li a:hover {
+    background-color: #d9f7f9; /* Light cyan */
 }
 
-.sidebar ul .dropdown li a {
-    padding: 10px 20px; /* Add padding for better spacing */
-    font-size: 14px; /* Slightly smaller font size */
+.sidebar ul li .dropdown li a {
+    padding: 8px;
 }
 
 #themeSwitcher {
-    margin-top: 20px;
     cursor: pointer;
+    color: #007BFF;
+    text-decoration: underline;
 }
 
+/* Main Content Styles */
 .main-content {
-    flex: 1;
+    margin-left: 220px; /* Adjust based on sidebar width */
     padding: 20px;
-    margin-left: 250px;
+    flex: 1;
     transition: margin-left 0.3s;
+}
+
+.topbar {
+    background-color: #b0e0e6; /* Light steel blue */
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.clock {
+    font-size: 1.5em;
 }
 
 .summary-cards {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .summary-card {
-    padding: 20px;
+    background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     text-align: center;
-    width: 22%;
-}
-
-.summary-card h3 {
-    margin: 0;
-    font-size: 18px;
-}
-
-.summary-card p {
-    font-size: 24px;
-    font-weight: 700;
-    margin: 10px 0 0;
+    flex: 1;
+    margin: 0 10px;
 }
 
 .dashboard-grid {
     display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .card {
-    padding: 20px;
+    background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 30%;
-    margin: 10px 0;
-}
-
-.card canvas {
-    width: 100% !important;
-    height: 300px !important;
-}
-
-#calendar {
-    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    margin: 0 10px;
 }
 
-.topbar {
-    padding: 10px 20px;
-    text-align: end;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.search-container {
+    margin: 20px 0;
 }
 
-.clock {
-    font-size: 22px;
+#calendarSection {
+    margin-top: 20px;
 }
 
-/* Login Page */
+/* Login Page Styles */
 .login-page {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
-    color: white;
+    background: linear-gradient(135deg, #e0f7fa 0%, #b3e5fc 100%); /* Lighter blue gradient */
+    text-align: center;
 }
 
 .login-page h1 {
-    font-size: 3.5em;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+.login-page h2 {
+    font-size: 1.5em;
+    margin-bottom: 1em;
 }
 
 .login-page form {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    width: 300px;
-}
-
-.login-page label {
-    display: block;
-    margin-bottom: 8px;
-    color: #333;
-}
-
-.login-page input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    transition: border-color 0.3s ease;
-}
-
-.login-page input:focus {
-    border-color: #2575fc;
-    outline: none;
-}
-
-.login-page button {
-    width: 100%;
-    background-color: #2575fc;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 4px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.login-page button:hover {
-    background-color: #1a5bb8;
-}
-
-/* Search Bar Styles */
-.search-container {
-    margin: 20px 0;
     display: flex;
     justify-content: center;
 }
 
-.search-container input {
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    margin-right: 10px;
-    width: 300px; /* Adjust width as needed */
-}
-
-.search-container button {
+.login-page button {
     padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background-color: #2575fc;
+    font-size: 1em;
+    color: #fff;
+    background-color: #007BFF;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.search-container button:hover {
-    background-color: #1a5bb8;
+.login-page button:hover {
+    background-color: #0056b3;
 }
-
-#studentSearch {
-    width: 100%; /* Make search bar full width of parent */
-    padding: 10px;
-    font-size: 14px;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    margin-top: 10px;
-}
-
