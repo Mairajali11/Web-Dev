@@ -1,111 +1,107 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const loginForm = document.getElementById('loginForm');
-    const loginPage = document.getElementById('loginPage');
-    const mainContent = document.getElementById('mainContent');
-    const themeSwitcher = document.getElementById('themeSwitcher');
-    const sidebar = document.getElementById('sidebar');
-    const toggleBtn = document.getElementById('toggleBtn');
-
-    loginForm.addEventListener('submit', function (event) {
+$(document).ready(function () {
+    // Login Form Submission
+    $('#loginForm').submit(function (event) {
         event.preventDefault();
-        loginPage.style.display = 'none';
-        mainContent.style.display = 'block';
-        initializeCharts();
+        $('#loginPage').hide();
+        $('#mainContent').show();
+        updateClock();
         initializeCalendar();
-        startClock();
+        initializeCharts();
     });
 
-    themeSwitcher.addEventListener('click', function () {
-        document.body.classList.toggle('dark-mode');
-        document.body.classList.toggle('light-mode');
-        themeSwitcher.textContent = document.body.classList.contains('dark-mode') ? 'Switch to Light Mode' : 'Switch to Dark Mode';
-    });
+    // Toggle Sidebar
+    var sidebarVisible = true;
 
-    // Sidebar Toggle
-    toggleBtn.addEventListener('click', function () {
-        if (sidebar.style.transform === 'translateX(-220px)') {
-            sidebar.style.transform = 'translateX(0)';
-            document.querySelector('.container').style.marginLeft = '220px';
+    $('#toggleBtn').click(function () {
+        if (sidebarVisible) {
+            $('#sidebar').css('transform', 'translateX(-100%)');
+            $('#mainContent').addClass('sidebar-hidden');
+            sidebarVisible = false;
         } else {
-            sidebar.style.transform = 'translateX(-220px)';
-            document.querySelector('.container').style.marginLeft = '0';
+            $('#sidebar').css('transform', 'translateX(0)');
+            $('#mainContent').removeClass('sidebar-hidden');
+            sidebarVisible = true;
         }
     });
 
+    $('#themeSwitcher').click(function () {
+        $('body').toggleClass('light-mode dark-mode');
+        if ($(this).text() === 'Switch to Dark Mode') {
+            $(this).text('Switch to Light Mode');
+        } else {
+            $(this).text('Switch to Dark Mode');
+        }
+    });
+
+    // Update Clock
+    function updateClock() {
+        function formatTime(date) {
+            return date.toTimeString().split(' ')[0];
+        }
+        setInterval(function () {
+            $('#clock').text(formatTime(new Date()));
+        }, 1000);
+    }
+
+    // Initialize Calendar
+    function initializeCalendar() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth'
+        });
+        calendar.render();
+    }
+
     // Initialize Charts
     function initializeCharts() {
-        const ctxStudents = document.getElementById('studentsChart').getContext('2d');
-        const ctxTeachers = document.getElementById('teachersChart').getContext('2d');
-        const ctxFinance = document.getElementById('financeChart').getContext('2d');
+        var ctxStudents = document.getElementById('studentsChart').getContext('2d');
+        var ctxTeachers = document.getElementById('teachersChart').getContext('2d');
+        var ctxFinance = document.getElementById('financeChart').getContext('2d');
 
         new Chart(ctxStudents, {
-            type: 'pie',
+            type: 'doughnut',
             data: {
-                labels: ['Class 1', 'Class 2', 'Class 3'],
+                labels: ['Class A', 'Class B', 'Class C'],
                 datasets: [{
-                    data: [300, 150, 100],
+                    data: [300, 500, 400],
                     backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
                 }]
             }
         });
 
         new Chart(ctxTeachers, {
-            type: 'pie',
+            type: 'doughnut',
             data: {
-                labels: ['Grade A', 'Grade B', 'Grade C'],
+                labels: ['Grade 1', 'Grade 2', 'Grade 3'],
                 datasets: [{
-                    data: [25, 50, 25],
+                    data: [50, 25, 35],
                     backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
                 }]
             }
         });
 
         new Chart(ctxFinance, {
-            type: 'bar',
+            type: 'doughnut',
             data: {
                 labels: ['Income', 'Expenses'],
                 datasets: [{
                     label: 'Financial Overview',
                     data: [50000, 20000],
-                    backgroundColor: ['#4BC0C0', '#FF6384']
+                    backgroundColor: ['#36A2EB', '#FF6384']
                 }]
             }
         });
     }
 
-    // Initialize Calendar
-    function initializeCalendar() {
-        const calendarEl = document.getElementById('calendar');
-        new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            events: [
-                { title: 'Event 1', start: '2024-09-01' },
-                { title: 'Event 2', start: '2024-09-15' }
-            ]
-        }).render();
-    }
-
-    // Start Clock
-    function startClock() {
-        function updateClock() {
-            const now = new Date();
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const seconds = now.getSeconds().toString().padStart(2, '0');
-            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-    }
-
-    // Search Functionality
-    document.getElementById('studentSearch').addEventListener('input', function () {
-        const searchQuery = this.value.toLowerCase();
-        // Filter students based on searchQuery
+    // Search Feature
+    $('#studentSearch, #studentSearchDashboard').on('input', function () {
+        var searchTerm = $(this).val().toLowerCase();
+        // Assuming you have a function to filter student entries
+        filterStudentEntries(searchTerm);
     });
 
-    document.getElementById('searchButtonDashboard').addEventListener('click', function () {
-        const searchQuery = document.getElementById('studentSearchDashboard').value.toLowerCase();
-        // Perform search based on searchQuery
-    });
+    function filterStudentEntries(searchTerm) {
+        // Implement the logic to filter student entries based on the searchTerm
+        console.log("Search term:", searchTerm); // Replace this with actual filtering logic
+    }
 });
