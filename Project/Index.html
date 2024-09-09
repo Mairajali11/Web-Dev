@@ -15,14 +15,27 @@
 </head>
 
 <body>
+    <div class="tooltip">
+        Hover over me
+        <span class="tooltiptext">
+            <img src="logo.png" alt="Tooltip Image">
+        </span>
+    </div>
+    
     <!-- Login Page -->
-    <div id="loginPage" class="login-page">
-        <h1>Welcome To MAIRAJ MONTESSORI & SCHOOL PAGE</h1>
-        <h2>Login to Your Account</h2>
-        <form id="loginForm">
-            <button type="submit">Login</button>
-        </form>
-    </div> 
+<div id="loginPage" class="login-page">
+    <h1>Welcome To MAIRAJ MONTESSORI & SCHOOL PAGE</h1>
+    <h2>Login to Your Account</h2>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter your username">
+        <br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password">
+        <br><br>
+        <button type="submit">Login</button>
+    </form>
+</div> 
 
     <!-- Main Content After Login -->
     <div id="mainContent" class="container" style="display:none;">
@@ -41,7 +54,7 @@
                         <li><a href="#">Delete Student</a></li>
                         <li><a href="#">Edit Student</a></li>
                         <li><a href="#">View Students</a></li>
-                        <li><input type="text" id="studentSearch" placeholder="Search Student" /></li>
+                        <li class="search-input"><input type="text" id="studentSearch" placeholder="Search Student" /></li>
                     </ul>
                 </li>
                 <li>
@@ -74,8 +87,13 @@
         <main class="main-content">
             <nav class="topbar">
                 <div class="clock" id="clock">00:00:00</div>
+<<<<<<< HEAD
                 <button class="toggle-btn" id="toggleBtn">&#9776;</button>
             </nav>
+=======
+                            <button class="toggle-btn" id="toggleBtn">&#9776;</button>
+            </div>
+>>>>>>> eaf4db723cce296e7b7a6328038595d7d800d142
             <!-- Summary Cards -->
             <section class="summary-cards">
                 <div class="summary-card">
@@ -99,6 +117,11 @@
             <!-- Dashboard Section -->
             <section id="dashboard">
                 <h2>Dashboard</h2>
+                <!-- Search Bar in Dashboard -->
+                <div class="search-container">
+                    <input type="text" id="studentSearch" placeholder="Search Student" />
+                    <button>Search</button>
+                </div>
                 <div class="dashboard-grid">
                     <!-- Pie Chart Cards -->
                     <div class="card">
@@ -114,11 +137,7 @@
                         <canvas id="financeChart"></canvas>
                     </div>
                 </div>
-                <!-- Search Bar in Dashboard -->
-                <div class="search-container">
-                    <input type="text" id="studentSearchDashboard" placeholder="Search Student">
-                    <button id="searchButtonDashboard">Search</button>
-                </div>
+                
             </section>
 
             <!-- Calendar Section -->

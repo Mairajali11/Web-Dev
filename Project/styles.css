@@ -4,18 +4,18 @@ body {
     margin: 0;
     padding: 0;
     transition: background-color 0.5s ease, color 0.5s ease;
-    background-color: #eaf4f4; /* Light blue background */
-    color: #333;
+    background-color: #FAF9FA; /* Light background color */
+    color: #333; /* Darker text for better visibility */
 }
 
 /* Light Mode */
 .light-mode {
-    background-color: #eaf4f4; /* Light blue background */
-    color: #333;
+    background-color: #FAF9FA; /* Light background color */
+    color: #333; /* Dark text */
 }
 
 .light-mode .sidebar {
-    background-color: #b0e0e6; /* Light steel blue */
+    background-color: #9c9ae4; /* Light purple */
     color: #333;
 }
 
@@ -24,60 +24,64 @@ body {
 }
 
 .light-mode .sidebar ul li a:hover {
-    background-color: #cce7e6; /* Slightly darker light blue */
+    background-color: #6A95B5; /* Darker blue on hover */
 }
 
 .light-mode .summary-card {
-    background-color: #ffffff; /* White */
-}
-
-.light-mode .card {
-    background-color: #ffffff; /* White */
-}
-
-.light-mode .topbar {
-    background-color: #b0e0e6; /* Light steel blue */
+    background-color: #88A7BF; /* Soft blue */
+    border: 2px solid #9DBCCA; /* Blue border */
     color: #333;
 }
 
+.light-mode .card {
+    background-color: #88A7BF; /* Soft blue */
+    border: 2px solid #9DBCCA; /* Blue border */
+    color: #333;
+}
+
+.light-mode .topbar {
+    background-color: #3c14bc; /* Dark purple */
+    color: #FAF9FA;
+}
+
 .light-mode .login-page {
-    background: linear-gradient(135deg, #d0e6f0 0%, #b0e0e6 100%); /* Lighter blue gradient */
+    background-color: #7e70ff; /* Light purple */
 }
 
 /* Dark Mode */
 .dark-mode {
-    background-color: #2c3e50; /* Dark greyish blue */
-    color: #ecf0f1; /* Light grey */
+    background-color: #3F6A9B; /* Darker blue */
+    color: #FAF9FA; /* Light text */
 }
 
 .dark-mode .sidebar {
-    background-color: #34495e; /* Darker greyish blue */
-    color: #ecf0f1;
+    background-color: #6A95B5; /* Medium blue */
+    color: #FAF9FA;
 }
 
 .dark-mode .sidebar ul li a {
-    color: #ecf0f1;
+    color: #FAF9FA;
 }
 
 .dark-mode .sidebar ul li a:hover {
-    background-color: #2c3e50; /* Darker greyish blue for hover */
+    background-color: #3c14bc; /* Dark purple on hover */
 }
 
 .dark-mode .summary-card {
-    background-color: #1c1c1c; /* Dark grey */
+    background-color: #9DBCCA; /* Soft blue */
 }
 
 .dark-mode .card {
-    background-color: #1c1c1c; /* Dark grey */
+    background-color: #9DBCCA; /* Soft blue */
 }
 
 .dark-mode .topbar {
-    background-color: #34495e; /* Darker greyish blue */
-    color: #ecf0f1;
+    background-color: #3c14bc; /* Dark purple */
+    color: #FAF9FA;
 }
 
 .dark-mode .login-page {
-    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%); /* Darker gradient */
+    background-color: #6A95B5; /* Medium blue */
 }
 
 /* Sidebar Styles */
@@ -90,9 +94,10 @@ body {
     width: 220px;
     height: 100vh;
     padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
     position: fixed;
     overflow-y: auto; /* Add this to make the sidebar scrollable */
+    overflow-x: hidden;
     transition: transform 0.3s ease;
 }
 
@@ -105,8 +110,17 @@ body {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
+.toggle-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
 .toggle-btn.active {
-    transform: rotate3d(90deg); /* or any other style you want to apply when the button is active */
+    transform: rotate(90deg);
 }
 
 .sidebar-header {
@@ -119,6 +133,7 @@ body {
 
 .sidebar h2 {
     margin: 10px 0;
+    color: #FAF9FA;
 }
 
 .sidebar ul {
@@ -137,10 +152,11 @@ body {
     display: block;
     padding: 10px;
     border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
 .sidebar ul li a:hover {
-    background-color: #34495e; /* Darker greyish blue for hover */
+    background-color: #3c14bc; /* Dark purple for hover */
 }
 
 /* Dropdown (submenu) styles */
@@ -164,9 +180,20 @@ body {
     font-size: 14px; /* Slightly smaller font size */
 }
 
+/* Theme Switcher Button */
 #themeSwitcher {
     margin-top: 20px;
     cursor: pointer;
+    padding: 10px 20px;
+    background-color: #3c14bc; /* Dark purple */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+#themeSwitcher:hover {
+    background-color: #1b0c6b; /* Darker purple */
 }
 
 .main-content {
@@ -185,9 +212,10 @@ body {
 .summary-card {
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     width: 22%;
+    color: #333; /* Dark text */
 }
 
 .summary-card h3 {
@@ -210,9 +238,11 @@ body {
 .card {
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 30%;
     margin: 10px 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .card canvas {
@@ -223,13 +253,13 @@ body {
 #calendar {
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .topbar {
     padding: 10px 20px;
     text-align: end;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .clock {
@@ -243,7 +273,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    color: white;
+    color: #FAF9FA; /* Light text */
 }
 
 .login-page h1 {
@@ -252,86 +282,88 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+#loginForm button[type="submit"] {
+    display: block;
+    margin: 0 auto;
+  }
+
 .login-page form {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: #7e70ff; /* Light purple */
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    width: 300px;
-}
-
-.login-page label {
-    display: block;
-    margin-bottom: 8px;
-    color: #333;
-}
-
-.login-page input {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     width: 100%;
+    max-width: 400px;
+}
+
+.login-page input[type="text"],
+.login-page input[type="password"] {
+    width: calc(100% - 20px);
     padding: 10px;
-    margin-bottom: 20px;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    transition: border-color 0.3s ease;
-}
-
-.login-page input:focus {
-    border-color: #2575fc;
-    outline: none;
-}
-
-.login-page button {
-    width: 100%;
-    background-color: #2575fc;
-    color: white;
-    padding: 12px;
+    margin: 10px 0;
     border: none;
     border-radius: 4px;
-    font-size: 1em;
+    box-sizing: border-box;
+    text-align: justify;
+}
+
+.login-page input[type="submit"] {
+    background-color: #3c14bc; /* Dark purple */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
     cursor: pointer;
+    width: 100%;
     transition: background-color 0.3s ease;
 }
 
-.login-page button:hover {
-    background-color: #1a5bb8;
+.login-page input[type="submit"]:hover {
+    background-color: #1b0c6b; /* Darker purple */
 }
 
-/* Search Bar Styles */
 .search-container {
-    margin: 20px 0;
     display: flex;
     justify-content: center;
+    align-items: center;
+  }
+.search-container input[type="text"] {
+  width: 250px;
 }
 
-.search-container input {
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 150px;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
     padding: 10px;
-    font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    margin-right: 10px;
-    width: 300px; /* Adjust width as needed */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 
-.search-container button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background-color: #2575fc;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
 
-.search-container button:hover {
-    background-color: #1a5bb8;
+.tooltip .tooltiptext img {
+    width: 100%;
+    height: auto;
 }
 
-#studentSearch {
-    width: 100%; /* Make search bar full width of parent */
-    padding: 10px;
-    font-size: 14px;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    margin-top: 10px;
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }

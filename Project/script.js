@@ -1,4 +1,13 @@
 $(document).ready(function () {
+    // Debounce function
+    function debounce(func, wait) {
+        let timeout;
+        return function (...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
+
     // Login Form Submission
     $('#loginForm').submit(function (event) {
         event.preventDefault();
@@ -10,7 +19,7 @@ $(document).ready(function () {
     });
 
     // Toggle Sidebar
-    var sidebarVisible = true;
+    let sidebarVisible = true;
 
     $('#toggleBtn').click(function () {
         if (sidebarVisible) {
@@ -24,13 +33,10 @@ $(document).ready(function () {
         }
     });
 
+    // Toggle Theme
     $('#themeSwitcher').click(function () {
         $('body').toggleClass('light-mode dark-mode');
-        if ($(this).text() === 'Switch to Dark Mode') {
-            $(this).text('Switch to Light Mode');
-        } else {
-            $(this).text('Switch to Dark Mode');
-        }
+        $(this).text($(this).text() === 'Switch to Dark Mode' ? 'Switch to Light Mode' : 'Switch to Dark Mode');
     });
 
     // Update Clock
@@ -93,15 +99,14 @@ $(document).ready(function () {
         });
     }
 
-    // Search Feature
-    $('#studentSearch, #studentSearchDashboard').on('input', function () {
-        var searchTerm = $(this).val().toLowerCase();
-        // Assuming you have a function to filter student entries
-        filterStudentEntries(searchTerm);
-    });
-
-    function filterStudentEntries(searchTerm) {
+    // Debounced Search Feature
+    const debouncedFilterStudentEntries = debounce(function (searchTerm) {
         // Implement the logic to filter student entries based on the searchTerm
         console.log("Search term:", searchTerm); // Replace this with actual filtering logic
-    }
+    }, 300); // 300ms debounce delay
+
+    $('#studentSearch, #studentSearchDashboard').on('input', function () {
+        const searchTerm = $(this).val().toLowerCase();
+        debouncedFilterStudentEntries(searchTerm);
+    });
 });
