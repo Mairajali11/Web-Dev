@@ -338,20 +338,24 @@ body {
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 200px; /* Adjust the size as needed */
-    background-color: #333;
+    width: 150px;
+    background-color: rgba(0, 0, 0, 0.75);
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 5px;
-    position: fixed;
+    padding: 10px;
+    position: absolute;
     z-index: 1;
-    bottom: 125%; /* Position above the tooltip trigger */
+    bottom: 125%;
     left: 50%;
-    margin-left: -100px; /* Center the tooltip */
+    margin-left: -75px;
     opacity: 0;
-    transition: opacity 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
 
 .tooltip .tooltiptext img {
