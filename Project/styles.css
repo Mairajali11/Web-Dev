@@ -1,3 +1,133 @@
+/* Header Styles */
+.header {
+    background-color: #3c14bc; /* Dark purple */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    background-color: #1b0c6b; /* Darker purple on hover */
+    border-radius: 4px;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #3c14bc; /* Dark purple */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.footer-columns {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-column {
+    width: 30%;
+    margin: 20px;
+}
+
+.footer-social ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-social li {
+    margin: 0 10px;
+}
+
+.footer-social a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: #1b0c6b; /* Darker purple on hover */
+}
+
+.footer-bottom {
+    background-color: #3c14bc; /* Dark purple */
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-bottom p {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.footer-nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-nav li {
+    margin: 0 15px;
+}
+
+.footer-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content Adjustments */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
@@ -338,24 +468,20 @@ body {
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 150px;
-    background-color: rgba(0, 0, 0, 0.75);
+    width: 200px; /* Adjust the size as needed */
+    background-color: #333;
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 10px;
-    position: absolute;
+    padding: 5px;
+    position: fixed;
     z-index: 1;
-    bottom: 125%;
+    bottom: 125%; /* Position above the tooltip trigger */
     left: 50%;
-    margin-left: -75px;
+    margin-left: -100px; /* Center the tooltip */
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .tooltip .tooltiptext img {
@@ -367,3 +493,4 @@ body {
     visibility: visible;
     opacity: 1;
 }
+
