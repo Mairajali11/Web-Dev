@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+function message(){
+    const meessage = {
+        thankyou: () => console.log("Thankyou"), 
+        greet: () => console.log("Welcome")
+    }
+    return meessage; // return the meessage object
+}
+const msg=message();
+console.log(msg.thankyou());
+// const message = {
+//     thankyou: () => console.log("Thankyou"), 
+//     greet: () => console.log("Welcome")
+// }
+    // console.log(message.thankyou())
+    // console.log(message.greet());
+</script>
+</body>
+</html>

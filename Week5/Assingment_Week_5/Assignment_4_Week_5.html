@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Task 4: Functions in an Array
+        const operationArray = [
+            // First element: Function to add two numbers
+            function add(a, b) {
+                return a + b; // Addition
+            },
+            // Second element: Arrow function to subtract two numbers
+            (a, b) => a - b, // Subtraction
+            // Third element: Function to multiply two numbers
+            function multiply(a, b) {
+                return a * b; // Multiplication
+            }
+        ];
+        // callinng each function from the array
+        console.log(operationArray[0](5,3)); // Addition of two numbers
+        console.log(operationArray[1](9,5)); // Subtraction of two numbers
+        console.log(operationArray[2](7,2)); // Multiplication of two numbers
+    </script>
+</body>
+</html>

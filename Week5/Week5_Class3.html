@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //     function average(arr) {
+    //     let sum = 0;
+    //     for (let i = 0; i < arr.length; i++) {
+    //         sum += arr[i];  
+    //     }
+    //     let avg = sum / arr.length;
+    //     console.log(avg);
+    // }
+    // let arr = [22, 55, 22, 33, 44, 77, 66];
+    // average(arr);
+    // average([202,383,292,575,727,220,900,500]);
+    // function add(a,b){
+    //     return a+b;
+    // }
+    // // console.log(add(5,7));
+    // add(2,3)
+    // const add=(a,b)=> {
+    //     return a+b;
+    // }
+    // console.log(add(2,3));
+    // const message = () => {
+    //     console.log("Hello Thank you!")
+    // }
+
+    // // console.log(message())
+
+    // const num=(a) => {
+    //     if (a %  2 === 0){
+    //         console.log("Number is even")
+    // }
+    // else{
+    //     console.log("Number is odd")
+    //     }    }
+
+    //     console.log(num(4))
+    //     console.log(num(7))
+    //     console.log(num(9))
+        let new_price=[];
+        function price(arr) {
+        for (i=0;i<arr.length;i++) 
+        {
+        discounted = arr[i] - 0.1 * arr[i];
+        new_price.push(discounted)
+        }
+        console.log(new_price)
+        }
+        price([220,240])
+
+//     let new_price = [];
+//         function price(arr) {
+//         for (let i = 0; i < arr.length; i++) {
+//         discounted = arr[i] - 0.1 * arr[i]; 
+//         new_price.push(discounted);
+//         }
+//     console.log(new_price); 
+// }
+// price([220, 240]);
+    </script>
+</body>
+</html>

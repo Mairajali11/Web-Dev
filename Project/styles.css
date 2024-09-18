@@ -3,7 +3,7 @@
     background-color: #3c14bc; /* Dark purple */
     color: white;
     padding: 20px 0;
-    text-align: center;
+    text-align: right;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -458,7 +458,7 @@ body {
     align-items: center;
   }
 .search-container input[type="text"] {
-  width: 250px;
+  width: max-content;
 }
 
 .tooltip {
