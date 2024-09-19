@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let calculator = {
+            // First property: Function to add two numbers
+            add: function(a, b) {
+                return a + b; // Addition
+            },
+            // Second property: Arrow function to subtract two numbers
+            subtract: (a, b) => a - b, // Subtraction
+            // Third property: Function to multiply two numbers
+            multiply: function(a, b) {
+                return a * b; // Multiplication
+            },
+            divide: function(a,b)    {
+                return a / b;
+            }
+        };
+        // calling each function from the object
+        console.log('Addition of two number is: ',calculator.add(5,3)); // Addition of two numbers
+        console.log('Subtraction of two number is: ',calculator.subtract(9,5)); // Subtraction of two numbers
+        console.log('Multiplication of two number is: ',calculator.multiply(7,2)); // Multiplication of two numbers
+        console.log('Division of two number is: ',calculator.divide(25,5));  // Division of two numbers
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="head1" id="heading1">Hello How are you</h1>
+    <h1 class="head1">I am fine</h1>
+    <h2 class="head1">What about you?</h2>
+    <p class="para" id='para1' style="color: blueviolet;">DOM document object model</p>
+    <p class="para">Paragraph 2</p>
+    <p class="para">Paragraph 3</p>
+    <button id="red-btn">Red</button>;
+    <button id="green-btn">Green</button>;
+    <script>
+        document.body.style.background = 'aqua'
+        let element1 = document.getElementById('para1');
+        console.log(element1)
+        let element2 = document.getElementsByClassName('para');
+        console.log(element2)
+        let element3 = document.getElementsByTagName('h1');
+        console.log(element3)
+        let heading = document.getElementById('heading1')
+        console.log(heading)
+        let heading1 = document.getElementsByClassName('head1')
+        console.log(heading1)
+
+
+
+
+        
+        let redBtn = document.getElementById('red-btn');
+        let greenBtn = document.getElementById('green-btn');
+
+        redBtn.addEventListener('click', function() {
+        document.body.style.background = 'red';
+        });
+        greenBtn.addEventListener('click', function() {
+        document.body.style.background = 'green';
+        });   
+    </script>
+</body>
+</html>
